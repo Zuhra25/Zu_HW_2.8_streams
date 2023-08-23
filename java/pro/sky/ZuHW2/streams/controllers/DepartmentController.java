@@ -1,4 +1,4 @@
-package pro.sky.ZuHW2.streams.WorkWithDepartment;
+package pro.sky.ZuHW2.streams.controllers;
 
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import pro.sky.ZuHW2.streams.Employee;
+import pro.sky.ZuHW2.streams.services.DepartmentServiceImpl;
 
 import java.util.List;
 import java.util.Map;
@@ -33,8 +34,9 @@ public class DepartmentController {
     public List<Employee> allEmployeeInDep(@RequestParam int departmentId) {
         return departmentServiceImpl.allEmployeeInDep(departmentId);
     }
+
     @GetMapping
-    public Map<Integer, List<Employee>> allEmployee () {
+    public Map<Integer, List<Employee>> allEmployee() {
         return departmentServiceImpl.allEmployee();
     }
 }

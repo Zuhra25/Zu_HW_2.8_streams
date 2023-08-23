@@ -1,11 +1,13 @@
-package pro.sky.ZuHW2.streams;
+package pro.sky.ZuHW2.streams.services;
 
 
 import org.springframework.stereotype.Service;
+import pro.sky.ZuHW2.streams.Employee;
 import pro.sky.ZuHW2.streams.exceptions.BadParamsException;
 import pro.sky.ZuHW2.streams.exceptions.EmployeeAlreadyAddedException;
 import pro.sky.ZuHW2.streams.exceptions.EmployeeNotFoundException;
 import pro.sky.ZuHW2.streams.exceptions.EmployeeStorageIsFullException;
+import pro.sky.ZuHW2.streams.services.EmployeeService;
 
 import java.util.ArrayList;
 import java.util.Collection;

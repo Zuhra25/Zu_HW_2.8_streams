@@ -1,4 +1,6 @@
-package pro.sky.ZuHW2.streams;
+package pro.sky.ZuHW2.streams.services;
+
+import pro.sky.ZuHW2.streams.Employee;
 
 import java.util.Collection;
 
