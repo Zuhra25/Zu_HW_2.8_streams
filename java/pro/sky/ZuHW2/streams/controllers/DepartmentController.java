@@ -24,10 +24,15 @@ public class DepartmentController {
     public Employee maxSalary(@RequestParam int departmentId) {
         return departmentServiceImpl.maxSalary(departmentId);
     }
-
     @GetMapping("/min-salary")
     public Employee minSalary(@RequestParam int departmentId) {
         return departmentServiceImpl.minSalary(departmentId);
+    }
+
+
+    @GetMapping("/sum-salary")
+    public String sumSalary(@RequestParam int departmentId) {
+        return departmentServiceImpl.sumSalary(departmentId);
     }
 
     @GetMapping("all")

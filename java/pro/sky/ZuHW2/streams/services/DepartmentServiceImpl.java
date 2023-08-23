@@ -9,6 +9,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Service
 public class DepartmentServiceImpl implements DepartmentService {
@@ -30,6 +31,14 @@ public class DepartmentServiceImpl implements DepartmentService {
                 .filter(e -> e.getDepartment() == dep)
                 .min(Comparator.comparing(e -> e.getSalary()))
                 .orElseThrow(() -> new BadParamsException("не найдет сотрудник с мин ЗП"));
+    }
+
+    public String sumSalary(int dep) {  // Найти сумму ЗП в отделе.
+        double totalSalaryInDep = employeeService.printAll().stream()
+                .filter(e -> e.getDepartment() == dep)
+                .mapToDouble(Employee::getSalary)
+                .sum();
+        return  "сумма ЗП в отделе равна " + totalSalaryInDep;
     }
 
     public List<Employee> allEmployeeInDep(int dep) {
