@@ -53,7 +53,6 @@ public class Employee {
                 ", department='" + department + '\'' +
                 '}';
     }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -61,7 +60,6 @@ public class Employee {
         Employee employee = (Employee) o;
         return Objects.equals(firstName, employee.firstName) && Objects.equals(lastName, employee.lastName);
     }
-
     @Override
     public int hashCode() {
         return Objects.hash(firstName, lastName);
