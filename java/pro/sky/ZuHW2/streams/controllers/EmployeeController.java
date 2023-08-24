@@ -1,9 +1,10 @@
-package pro.sky.ZuHW2.streams;
+package pro.sky.ZuHW2.streams.controllers;
 
 
 import org.springframework.web.bind.annotation.*;
+import pro.sky.ZuHW2.streams.Employee;
+import pro.sky.ZuHW2.streams.services.EmployeeService;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 @RestController

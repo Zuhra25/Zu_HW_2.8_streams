@@ -1,18 +1,15 @@
-package pro.sky.ZuHW2.streams.WorkWithDepartment;
+package pro.sky.ZuHW2.streams.services;
 
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 import pro.sky.ZuHW2.streams.Employee;
-import pro.sky.ZuHW2.streams.EmployeeService;
 import pro.sky.ZuHW2.streams.exceptions.BadParamsException;
 
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Service
 public class DepartmentServiceImpl implements DepartmentService {
@@ -28,6 +25,7 @@ public class DepartmentServiceImpl implements DepartmentService {
                 .max(Comparator.comparing(e -> e.getSalary()))
                 .orElseThrow(() -> new BadParamsException("не найдет сотрудник с макс ЗП"));
     }
+
     public Employee minSalary(int dep) {  // Найти сотрудника с максимальной зарплатой.
         return employeeService.printAll().stream()
                 .filter(e -> e.getDepartment() == dep)
@@ -35,13 +33,21 @@ public class DepartmentServiceImpl implements DepartmentService {
                 .orElseThrow(() -> new BadParamsException("не найдет сотрудник с мин ЗП"));
     }
 
-    public List<Employee> allEmployeeInDep(int dep){
+    public String sumSalary(int dep) {  // Найти сумму ЗП в отделе.
+        double totalSalaryInDep = employeeService.printAll().stream()
+                .filter(e -> e.getDepartment() == dep)
+                .mapToDouble(Employee::getSalary)
+                .sum();
+        return  "сумма ЗП в отделе равна " + totalSalaryInDep;
+    }
+
+    public List<Employee> allEmployeeInDep(int dep) {
         return employeeService.printAll().stream()
                 .filter(e -> e.getDepartment() == dep)
                 .collect(Collectors.toList());
     }
 
-    public Map<Integer, List<Employee>> allEmployee (){
+    public Map<Integer, List<Employee>> allEmployee() {
         return employeeService.printAll().stream()
                 .collect(Collectors.groupingBy(e -> e.getDepartment(), Collectors.toList()));
     }

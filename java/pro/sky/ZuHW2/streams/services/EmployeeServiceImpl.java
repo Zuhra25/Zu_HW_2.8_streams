@@ -1,11 +1,13 @@
-package pro.sky.ZuHW2.streams;
+package pro.sky.ZuHW2.streams.services;
 
 
 import org.springframework.stereotype.Service;
+import pro.sky.ZuHW2.streams.Employee;
 import pro.sky.ZuHW2.streams.exceptions.BadParamsException;
 import pro.sky.ZuHW2.streams.exceptions.EmployeeAlreadyAddedException;
 import pro.sky.ZuHW2.streams.exceptions.EmployeeNotFoundException;
 import pro.sky.ZuHW2.streams.exceptions.EmployeeStorageIsFullException;
+import pro.sky.ZuHW2.streams.services.EmployeeService;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,8 +15,8 @@ import java.util.*;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-    private final List<Employee> employees=new ArrayList<>();
-    private int size = 4;
+    private final List<Employee> employees = new ArrayList<>();
+    private int size = 5;
 
     public EmployeeServiceImpl() {
         employees.add(new Employee("Иван1", "Иванов1", 1000, 1));
@@ -24,10 +26,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     public Employee addEmployee(String firstName, String lastName, double salary, int department) {
-        Employee employee = new Employee(firstName, lastName, salary,department);
-        if (firstName =="" || lastName == "") {
+        Employee employee = new Employee(firstName, lastName, salary, department);
+        if (firstName == "" || lastName == "") {
             throw new BadParamsException("поля пустые");
-
         }
         if (employees.contains(employee)) {
             throw new EmployeeAlreadyAddedException("этот сотрудник уже существует");
@@ -40,7 +41,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     public Employee removeEmployee(String firstName, String lastName, double salary, int department) {
-        Employee employee = new Employee(firstName, lastName, salary,department);
+        Employee employee = new Employee(firstName, lastName, salary, department);
 
         if (employees.contains(employee)) {
             employees.remove(employee);
@@ -50,7 +51,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     public Employee findEmployee(String firstName, String lastName, double salary, int department) {
-        Employee employee = new Employee(firstName, lastName, salary,department);
+        Employee employee = new Employee(firstName, lastName, salary, department);
         if (employees.contains(employee)) {
             return employee;
         }
@@ -60,4 +61,5 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Collection<Employee> printAll() {
         return new ArrayList<>(employees);
     }
+
 }
